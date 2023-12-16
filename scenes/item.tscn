@@ -1,0 +1,303 @@
+[gd_scene load_steps=14 format=3 uid="uid://jeou78plv0y8"]
+
+[ext_resource type="LabelSettings" uid="uid://b4p7lely1emqx" path="res://font/label_settings/label_24.tres" id="1_63mch"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_mvxyu"]
+[ext_resource type="Texture2D" uid="uid://dl1vwj71nq25s" path="res://icons/padlock-unlock.png" id="2_o62ye"]
+[ext_resource type="Texture2D" uid="uid://mge2405wmnsh" path="res://icons/padlock.png" id="3_xnuum"]
+[ext_resource type="LabelSettings" uid="uid://bq41b2ks7dt7r" path="res://font/label_settings/label_20.tres" id="4_pjoeu"]
+[ext_resource type="Texture2D" uid="uid://cs1bg2n8oblts" path="res://icons/trash-can.png" id="5_boxbt"]
+[ext_resource type="Texture2D" uid="uid://mig06jsijx23" path="res://icons/copy.png" id="5_uykya"]
+[ext_resource type="Texture2D" uid="uid://b7mlw1d8cfoua" path="res://icons/visibility.png" id="6_gk5fx"]
+[ext_resource type="Texture2D" uid="uid://buxe0rxq6pk0c" path="res://icons/visibility-hide.png" id="7_jy74q"]
+[ext_resource type="FontFile" uid="uid://djlj5kr535pyq" path="res://font/font_data/TitilliumWeb-Regular.ttf" id="7_wh30m"]
+[ext_resource type="Texture2D" uid="uid://clohjlvgo3epk" path="res://icons/copy-ok.png" id="8_on1y4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ignll"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.6)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.337255, 0.270588, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="Theme" id="Theme_g464f"]
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_ignll")
+
+[node name="Item" type="Panel"]
+custom_minimum_size = Vector2(340, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -100.0
+offset_right = 170.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+script = ExtResource("1_mvxyu")
+metadata/_edit_lock_ = true
+
+[node name="VBox" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(340, 160)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Topbar" type="HBoxContainer" parent="VBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Name" type="Label" parent="VBox/Topbar"]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Name"
+label_settings = ExtResource("1_63mch")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Lock" type="TextureButton" parent="VBox/Topbar"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Lock this item from
+unwanted changes"
+focus_neighbor_right = NodePath("../Remove")
+focus_neighbor_bottom = NodePath("../../Website/Url_input")
+focus_next = NodePath("../Remove")
+toggle_mode = true
+texture_normal = ExtResource("2_o62ye")
+texture_pressed = ExtResource("3_xnuum")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Remove" type="TextureButton" parent="VBox/Topbar"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Delete this item"
+focus_neighbor_left = NodePath("../Lock")
+focus_neighbor_bottom = NodePath("../../Website/Url_input")
+focus_next = NodePath("../../Website/Url_input")
+focus_previous = NodePath("../Lock")
+texture_normal = ExtResource("5_boxbt")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Website" type="HBoxContainer" parent="VBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Url" type="Label" parent="VBox/Website"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+text = "Website"
+label_settings = ExtResource("4_pjoeu")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Url_input" type="LineEdit" parent="VBox/Website"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Topbar/Remove")
+focus_neighbor_right = NodePath("../Copy")
+focus_neighbor_bottom = NodePath("../../Username/Username_input")
+focus_next = NodePath("../../Username/Username_input")
+focus_previous = NodePath("../../Topbar/Remove")
+theme_override_fonts/font = ExtResource("7_wh30m")
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Website / App"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Copy" type="TextureButton" parent="VBox/Website"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Copy"
+focus_neighbor_left = NodePath("../Url_input")
+focus_neighbor_top = NodePath("../../Topbar/Remove")
+focus_neighbor_bottom = NodePath("../../Username/Copy")
+focus_next = NodePath("../../Username/Copy")
+focus_previous = NodePath("../../Topbar/Remove")
+toggle_mode = true
+texture_normal = ExtResource("5_uykya")
+texture_pressed = ExtResource("8_on1y4")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Username" type="HBoxContainer" parent="VBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Username" type="Label" parent="VBox/Username"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+text = "Username"
+label_settings = ExtResource("4_pjoeu")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Username_input" type="LineEdit" parent="VBox/Username"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Website/Url_input")
+focus_neighbor_right = NodePath("../Copy")
+focus_neighbor_bottom = NodePath("../../Password/Password_input")
+focus_next = NodePath("../../Password/Password_input")
+focus_previous = NodePath("../../Website/Url_input")
+theme_override_fonts/font = ExtResource("7_wh30m")
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Username"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Copy" type="TextureButton" parent="VBox/Username"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Copy"
+focus_neighbor_left = NodePath("../Username_input")
+focus_neighbor_top = NodePath("../../Website/Copy")
+focus_neighbor_bottom = NodePath("../../Password/Copy")
+focus_next = NodePath("../../Password/Show_Hide")
+focus_previous = NodePath("../../Website/Copy")
+toggle_mode = true
+texture_normal = ExtResource("5_uykya")
+texture_pressed = ExtResource("8_on1y4")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Password" type="HBoxContainer" parent="VBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Password" type="Label" parent="VBox/Password"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+text = "Password"
+label_settings = ExtResource("4_pjoeu")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Password_input" type="LineEdit" parent="VBox/Password"]
+custom_minimum_size = Vector2(165, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Username/Username_input")
+focus_neighbor_right = NodePath("../Show_Hide")
+focus_next = NodePath("../Show_Hide")
+focus_previous = NodePath("../../Username/Username_input")
+theme_override_fonts/font = ExtResource("7_wh30m")
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Password"
+alignment = 1
+secret = true
+metadata/_edit_lock_ = true
+
+[node name="Show_Hide" type="TextureButton" parent="VBox/Password"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Show / Hide
+Password"
+focus_neighbor_left = NodePath("../Password_input")
+focus_neighbor_top = NodePath("../../Username/Copy")
+focus_neighbor_right = NodePath("../Copy")
+focus_next = NodePath("../Copy")
+focus_previous = NodePath("../../Username/Copy")
+toggle_mode = true
+texture_normal = ExtResource("6_gk5fx")
+texture_pressed = ExtResource("7_jy74q")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Copy" type="TextureButton" parent="VBox/Password"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Copy"
+focus_neighbor_left = NodePath("../Show_Hide")
+focus_neighbor_top = NodePath("../../Username/Copy")
+focus_previous = NodePath("../Show_Hide")
+toggle_mode = true
+texture_normal = ExtResource("5_uykya")
+texture_pressed = ExtResource("8_on1y4")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="S1" type="Control" parent="VBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Con_del" type="ConfirmationDialog" parent="."]
+disable_3d = true
+transparent_bg = true
+gui_embed_subwindows = true
+title = "Are you shure?"
+initial_position = 2
+size = Vector2i(270, 85)
+unresizable = true
+borderless = true
+popup_window = true
+min_size = Vector2i(270, 85)
+content_scale_aspect = 1
+theme = SubResource("Theme_g464f")
+ok_button_text = "Delete"
+dialog_text = "Do you want to delete this item?"
+
+[connection signal="toggled" from="VBox/Topbar/Lock" to="." method="_on_lock_toggled"]
+[connection signal="pressed" from="VBox/Topbar/Remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="VBox/Website/Copy" to="." method="_on_website_copy_pressed"]
+[connection signal="pressed" from="VBox/Username/Copy" to="." method="_on_username_copy_pressed"]
+[connection signal="toggled" from="VBox/Password/Show_Hide" to="." method="_on_show_hide_toggled"]
+[connection signal="pressed" from="VBox/Password/Copy" to="." method="_on_password_copy_pressed"]
+[connection signal="confirmed" from="Con_del" to="." method="_on_delete_confirmed"]

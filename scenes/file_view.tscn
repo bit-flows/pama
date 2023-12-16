@@ -1,0 +1,167 @@
+[gd_scene load_steps=12 format=3 uid="uid://dje3ysspqt4qs"]
+
+[ext_resource type="Script" path="res://scripts/file_view.gd" id="1_cg2nn"]
+[ext_resource type="Texture2D" uid="uid://bqufx585nxg4m" path="res://icons/back.png" id="2_kdvis"]
+[ext_resource type="FontFile" uid="uid://0a4ukq2strbq" path="res://font/font_data/Marlboro.ttf" id="2_lnlm1"]
+[ext_resource type="Texture2D" uid="uid://dekhesq8dtxlq" path="res://icons/random.png" id="4_6qunc"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_dfmvh"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_0rpx5"]
+events = [SubResource("InputEventKey_dfmvh")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x02mq"]
+font = ExtResource("2_lnlm1")
+font_size = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_sbhr2"]
+device = -1
+ctrl_pressed = true
+keycode = 83
+
+[sub_resource type="Shortcut" id="Shortcut_a3m74"]
+events = [SubResource("InputEventKey_sbhr2")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_rxtq7"]
+device = -1
+ctrl_pressed = true
+keycode = 78
+
+[sub_resource type="Shortcut" id="Shortcut_60w6i"]
+events = [SubResource("InputEventKey_rxtq7")]
+
+[node name="File_view" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cg2nn")
+metadata/_edit_lock_ = true
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+metadata/_edit_lock_ = true
+
+[node name="Topbar" type="HBoxContainer" parent="VBox"]
+custom_minimum_size = Vector2(380, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Back" type="TextureButton" parent="VBox/Topbar"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Close this file
+(Escape)"
+shortcut = SubResource("Shortcut_0rpx5")
+shortcut_in_tooltip = false
+texture_normal = ExtResource("2_kdvis")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Random" type="TextureButton" parent="VBox/Topbar"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Get a random password"
+shortcut_in_tooltip = false
+texture_normal = ExtResource("4_6qunc")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="VBox/Topbar"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_x02mq")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Save" type="Button" parent="VBox/Topbar"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Save this file
+(Ctrl+S)"
+shortcut = SubResource("Shortcut_a3m74")
+shortcut_in_tooltip = false
+text = "Save"
+metadata/_edit_lock_ = true
+
+[node name="New_item" type="Button" parent="VBox/Topbar"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Create new item
+(Ctrl+N)"
+shortcut = SubResource("Shortcut_60w6i")
+shortcut_in_tooltip = false
+text = "New"
+metadata/_edit_lock_ = true
+
+[node name="Scroller" type="Control" parent="VBox"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="Items" type="GridContainer" parent="VBox/Scroller"]
+custom_minimum_size = Vector2(320, 460)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 20
+columns = 3
+metadata/_edit_lock_ = true
+
+[node name="Scroll_bar" type="VScrollBar" parent="VBox/Scroller"]
+visible = false
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 1
+max_value = 0.0
+step = 1.0
+rounded = true
+metadata/_edit_lock_ = true
+
+[node name="S1" type="Control" parent="VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="VBox/Topbar/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBox/Topbar/Random" to="." method="_on_random_pressed"]
+[connection signal="pressed" from="VBox/Topbar/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="VBox/Topbar/New_item" to="." method="_on_new_item_pressed"]
+[connection signal="resized" from="VBox/Scroller" to="." method="_on_scroller_resized"]
+[connection signal="scrolling" from="VBox/Scroller/Scroll_bar" to="." method="_on_scroll_bar_scrolling"]

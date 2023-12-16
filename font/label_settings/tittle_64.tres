@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://di8ueun3ghguf"]
+
+[ext_resource type="FontFile" uid="uid://0a4ukq2strbq" path="res://font/font_data/Marlboro.ttf" id="1_voufw"]
+
+[resource]
+font = ExtResource("1_voufw")
+font_size = 64

@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmvgx7551ofuy"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_nkrgt"]
+[ext_resource type="PackedScene" uid="uid://l3oux7ssuq51" path="res://scenes/login.tscn" id="2_t3vjc"]
+[ext_resource type="PackedScene" uid="uid://dje3ysspqt4qs" path="res://scenes/file_view.tscn" id="3_1pmbm"]
+
+[sub_resource type="Gradient" id="Gradient_hksll"]
+colors = PackedColorArray(0.980392, 0.313726, 1, 1, 0.254902, 0.294118, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q25nc"]
+gradient = SubResource("Gradient_hksll")
+fill_from = Vector2(0.8, 0.2)
+fill_to = Vector2(0.2, 0.8)
+metadata/_snap_enabled = true
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nkrgt")
+metadata/_edit_lock_ = true
+
+[node name="Back_img" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_q25nc")
+metadata/_edit_lock_ = true
+
+[node name="Modulate" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+metadata/_edit_lock_ = true
+
+[node name="Login" parent="." instance=ExtResource("2_t3vjc")]
+layout_mode = 1
+
+[node name="File_view" parent="." instance=ExtResource("3_1pmbm")]
+visible = false
+layout_mode = 1
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

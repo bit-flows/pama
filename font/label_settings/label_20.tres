@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bq41b2ks7dt7r"]
+
+[ext_resource type="FontFile" uid="uid://b85j1a8kklldg" path="res://font/font_data/TitilliumWeb-Bold.ttf" id="1_hvolc"]
+
+[resource]
+line_spacing = 1.0
+font = ExtResource("1_hvolc")

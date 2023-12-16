@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b4p7lely1emqx"]
+
+[ext_resource type="FontFile" uid="uid://b85j1a8kklldg" path="res://font/font_data/TitilliumWeb-Bold.ttf" id="1_mjdg8"]
+
+[resource]
+line_spacing = 1.0
+font = ExtResource("1_mjdg8")
+font_size = 24
