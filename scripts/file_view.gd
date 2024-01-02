@@ -86,3 +86,6 @@ func _on_random_pressed():
 	get_parent().show_title("Copied", Color("#00D566"))
 	await get_tree().create_timer(3).timeout
 	get_parent().hide_title()
+
+func _on_backup_pressed():
+	get_parent().backup()

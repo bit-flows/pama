@@ -59,6 +59,9 @@ func setup():
 	
 	if not d.dir_exists("files/"):
 		d.make_dir("files/")
+	
+	if not d.dir_exists("backups/"):
+		d.make_dir("backups/")
 
 func get_last_opend_file():
 	var last := ""

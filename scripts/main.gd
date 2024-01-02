@@ -92,6 +92,21 @@ func save():
 	
 	return err
 
+func backup():
+	save()
+	
+	var d := DirAccess.open("user://")
+	var date := Time.get_date_dict_from_system()
+	var time := Time.get_time_dict_from_system()
+	var folder_name := "backups/" + str(date.year) + "_" + str(date.month) + "_" + str(date.day) + "/"
+	var time_name := str(time.hour) + "_" + str(time.minute) + "_" + str(time.second)
+	var new_file_name := cur_name + folder_name.replace("backups/", "").replace("/", "") + "-" + time_name
+	
+	if not d.dir_exists(folder_name):
+		d.make_dir_absolute(folder_name)
+	
+	d.copy("files/" + cur_name + ".pm", "backups/" + folder_name + new_file_name)
+
 func list_to_items():
 	$File_view.remove_all_items()
 	for item in items:
@@ -104,7 +119,8 @@ func items_to_list():
 
 
 func _on_tree_exiting():
-	items.clear()
-	for item in $File_view.get_items():
-		items.append(item.get_variabels())
-	Files.save_with_pass(items, "user://files/", cur_name, cur_pass, true)
+	pass
+	#items.clear()
+	#for item in $File_view.get_items():
+	#	items.append(item.get_variabels())
+	#Files.save_with_pass(items, "user://files/", cur_name, cur_pass, true)

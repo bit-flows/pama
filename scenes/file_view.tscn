@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dje3ysspqt4qs"]
+[gd_scene load_steps=14 format=3 uid="uid://dje3ysspqt4qs"]
 
 [ext_resource type="Script" path="res://scripts/file_view.gd" id="1_cg2nn"]
 [ext_resource type="Texture2D" uid="uid://bqufx585nxg4m" path="res://icons/back.png" id="2_kdvis"]
@@ -31,6 +31,14 @@ keycode = 78
 
 [sub_resource type="Shortcut" id="Shortcut_60w6i"]
 events = [SubResource("InputEventKey_rxtq7")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_8m07r"]
+device = -1
+ctrl_pressed = true
+keycode = 66
+
+[sub_resource type="Shortcut" id="Shortcut_jd2vj"]
+events = [SubResource("InputEventKey_8m07r")]
 
 [node name="File_view" type="Control"]
 layout_mode = 3
@@ -154,6 +162,27 @@ step = 1.0
 rounded = true
 metadata/_edit_lock_ = true
 
+[node name="Bottombar" type="HBoxContainer" parent="VBox"]
+visible = false
+custom_minimum_size = Vector2(380, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Backup" type="Button" parent="VBox/Bottombar"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Backup all files
+(Ctrl+B)"
+shortcut = SubResource("Shortcut_jd2vj")
+shortcut_in_tooltip = false
+text = "Backup"
+metadata/_edit_lock_ = true
+
 [node name="S1" type="Control" parent="VBox"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -165,3 +194,4 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="VBox/Topbar/New_item" to="." method="_on_new_item_pressed"]
 [connection signal="resized" from="VBox/Scroller" to="." method="_on_scroller_resized"]
 [connection signal="scrolling" from="VBox/Scroller/Scroll_bar" to="." method="_on_scroll_bar_scrolling"]
+[connection signal="pressed" from="VBox/Bottombar/Backup" to="." method="_on_backup_pressed"]
